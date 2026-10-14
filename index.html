@@ -3,18 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadora de Caución NBP</title>
+  <title>Caucho Tool | USO INTERNO</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f8fc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f1f5f9;
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      flex-direction: column;
+      align-items: center;
       min-height: 100vh;
       margin: 0;
-      padding: 30px 20px;
+      padding: 30px 15px;
       box-sizing: border-box;
+      color: #1e293b;
+    }
+
+    .main-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .main-header h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .badge-internal {
+      background-color: #fee2e2;
+      color: #991b1b;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid #fecaca;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      vertical-align: middle;
     }
 
     .wrapper {
@@ -23,67 +54,124 @@
       align-items: flex-start;
       flex-wrap: wrap;
       justify-content: center;
+      max-width: 1250px;
+      width: 100%;
     }
 
-    /* Estilos de Contenedores */
-    .container-tomadora, .container {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      width: 400px;
+    .card {
+      background: #ffffff;
+      padding: 28px;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      box-sizing: border-box;
+    }
+
+    .container-main {
+      width: 440px;
     }
 
     .side {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      width: 220px;
-      font-size: 14px;
+      width: 300px;
+      font-size: 13px;
+      line-height: 1.5;
     }
 
-    h1 {
-      color: #1e3a8a;
-      font-size: 20px;
+    h2 {
+      color: #0f172a;
+      font-size: 18px;
       text-align: center;
-      margin-bottom: 5px;
-      margin-top: 0;
+      margin: 0 0 4px 0;
+      font-weight: 700;
+    }
+
+    .badge-moneda {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      margin-top: 10px;
+    }
+
+    .badge-btn {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #475569;
+      transition: all 0.2s;
+    }
+
+    .badge-btn.active {
+      background: #2563eb;
+      color: white;
+      border-color: #2563eb;
     }
 
     .disclaimer {
       font-size: 12px;
-      color: #6b7280;
+      color: #64748b;
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
 
     .warning {
       font-size: 12px;
       color: #b91c1c;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      padding: 8px;
+      border-radius: 6px;
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .info-callout {
+      background-color: #eff6ff;
+      border-left: 4px solid #2563eb;
+      padding: 9px 12px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      font-size: 11.5px;
+      color: #1e40af;
+      line-height: 1.4;
     }
 
     label {
-      font-size: 14px;
-      color: #374151;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
       display: block;
       margin-top: 10px;
     }
 
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      margin-bottom: 5px;
-      border-radius: 8px;
-      border: 1px solid #d1d5db;
-      font-size: 14px;
-      box-sizing: border-box;
+    .input-hint {
+      font-size: 11px;
+      font-weight: normal;
+      color: #64748b;
     }
 
-    button {
+    input {
+      width: 100%;
+      padding: 9px 12px;
+      margin-top: 4px;
+      margin-bottom: 4px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      font-size: 14px;
+      box-sizing: border-box;
+      background-color: #fff;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    button.btn-primary {
       width: 100%;
       background-color: #2563eb;
       color: white;
@@ -92,49 +180,48 @@
       border-radius: 8px;
       cursor: pointer;
       font-size: 14px;
-      margin-top: 15px;
+      font-weight: 600;
+      margin-top: 16px;
+      transition: background 0.2s;
     }
 
-    button:hover {
+    button.btn-primary:hover {
       background-color: #1d4ed8;
     }
 
-    .result, .result-tomadora {
-      margin-top: 20px;
-      padding: 15px;
-      background: #eff6ff;
+    .result-box {
+      margin-top: 18px;
+      padding: 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
       border-radius: 10px;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .error {
-      color: red;
-      font-size: 13px;
+      color: #dc2626;
+      font-size: 12.5px;
       margin-top: 10px;
       text-align: center;
+      font-weight: 500;
     }
 
     .bottom-note {
-      margin-top: 15px;
+      margin-top: 14px;
       font-size: 11px;
-      color: #6b7280;
+      color: #64748b;
       text-align: center;
     }
 
-    strong {
-      color: #1e3a8a;
-    }
-
-    /* Tablas de resultados */
     .tabla-resultado {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 8px;
-      font-size: 12.5px;
+      margin-top: 6px;
+      font-size: 12px;
     }
 
     .tabla-resultado th {
-      background-color: #1e3a8a;
+      background-color: #0f172a;
       color: white;
       padding: 6px 8px;
       text-align: left;
@@ -142,9 +229,9 @@
     }
 
     .tabla-resultado td {
-      padding: 5px 8px;
-      border-bottom: 1px solid #dbeafe;
-      color: #374151;
+      padding: 6px 8px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
     }
 
     .tabla-resultado .td-num {
@@ -153,229 +240,327 @@
     }
 
     .tabla-resultado .highlight-row td {
-      background-color: #dbeafe;
-      font-weight: bold;
-      color: #1e3a8a;
+      background-color: #eff6ff;
+      font-weight: 700;
+      color: #1d4ed8;
     }
 
     .seccion-titulo {
       font-size: 12px;
-      font-weight: bold;
-      color: #1e3a8a;
-      margin-top: 10px;
-      margin-bottom: 3px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
-    @media (max-width: 900px) {
+    .badge-info {
+      display: inline-block;
+      padding: 2px 6px;
+      background: #e0f2fe;
+      color: #0369a1;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 980px) {
       .wrapper { flex-direction: column; align-items: center; }
-      .container, .container-tomadora { width: 100%; max-width: 400px; }
+      .container-main, .side { width: 100%; max-width: 480px; }
     }
   </style>
 </head>
 <body>
 
+<div class="main-header">
+  <h1>Caucho Tool <span class="badge-internal">USO INTERNO</span></h1>
+</div>
+
 <div class="wrapper">
 
-  <div class="container-tomadora">
-    <h1>Calculadora de Caución<br>Tomadora</h1>
-    <div class="disclaimer">Valores de referencia indicativos</div>
+  <!-- ========================================== -->
+  <!-- 1. CUPOS DE APALANCAMIENTO SOBRE AUM NETO  -->
+  <!-- ========================================== -->
+  <div class="card container-main">
+    <h2>Cupo Disponible de Caución</h2>
+    <div class="disclaimer">Límites sobre AUM Neto del Cliente</div>
 
-    <label>Monto (en pesos)</label>
-    <input type="number" id="t_monto" value="350000000">
+    <div class="badge-moneda">
+      <button type="button" class="badge-btn active" id="btn-moneda-cap-ars" onclick="cambiarMonedaCap('ARS')">ARS ($)</button>
+      <button type="button" class="badge-btn" id="btn-moneda-cap-usd" onclick="cambiarMonedaCap('USD')">USD (u$s)</button>
+    </div>
+
+    <label>AUM Neto del Cliente <span class="input-hint">(Patrimonio Neto real)</span></label>
+    <input type="number" id="aum_neto" placeholder="Ej: 100000000">
+
+    <label>Caución Ya Tomada Vigente <span class="input-hint">(deuda actual a descontar)</span></label>
+    <input type="number" id="caucion_tomada_actual" value="0">
+
+    <div id="tc_container">
+      <label>Tipo de Cambio CCL / MEP <span class="input-hint">(para chequear piso de USD 25k)</span></label>
+      <input type="number" id="cap_tc" placeholder="Ej: 1250">
+    </div>
+
+    <button class="btn-primary" onclick="calcularCapacidad()">Calcular Cupo Disponible</button>
+
+    <div id="cap_error" class="error"></div>
+    <div id="cap_warning" class="warning" style="display:none;"></div>
+    <div id="cap_resultado" class="result-box" style="display:none;"></div>
+
+    <div class="bottom-note">
+      *Sujeto al aforo y liquidez individual de hasta 15 especies en garantía.
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 2. LIQUIDACIÓN DE COSTOS FINANCIEROS       -->
+  <!-- ========================================== -->
+  <div class="card container-main">
+    <h2>Costos de Caución Tomadora</h2>
+    <div class="disclaimer">Intereses, Aranceles, Derechos e IVA</div>
+
+    <div class="badge-moneda">
+      <button type="button" class="badge-btn active" id="btn-moneda-costo-ars" onclick="cambiarMonedaCosto('ARS')">En Pesos</button>
+      <button type="button" class="badge-btn" id="btn-moneda-costo-usd" onclick="cambiarMonedaCosto('USD')">En Dólares</button>
+    </div>
+
+    <label>Monto a Tomar</label>
+    <input type="number" id="t_monto" value="50000000">
 
     <label>TNA (%)</label>
-    <input type="number" id="t_tna" value="20" step="0.1">
+    <input type="number" id="t_tna" value="38.5" step="0.1">
 
     <label>Arancel TN 90d (%)</label>
     <input type="number" id="t_arancel" value="1.5" step="0.1">
 
-    <label>DDM TN 90d (%)</label>
+    <label>Derechos de Mercado TN 90d (%)</label>
     <input type="number" id="t_ddm" value="0.09" step="0.01">
 
     <label>Plazo (en días)</label>
-    <input type="number" id="t_plazo" value="1">
+    <input type="number" id="t_plazo" value="7">
 
-    <button onclick="calcularTomadora()">Calcular</button>
+    <button class="btn-primary" onclick="calcularCostoTomadora()">Liquidar Operación</button>
 
     <div id="t_error" class="error"></div>
-    <div id="t_resultado" class="result-tomadora" style="display:none;"></div>
+    <div id="t_resultado" class="result-box" style="display:none;"></div>
 
-    <div class="bottom-note">*Valores de referencia indicativos</div>
+    <div class="bottom-note">*Incluye IVA del 21% sobre arancel comitente y derechos de mercado.</div>
   </div>
 
-  <div class="container">
-    <h1>Calculadora de Caución<br>Tomadora</h1>
-    <div id="disclaimer" class="disclaimer">
-      podemos poner únicamente 5 títulos en garantía y el cliente debe tener un AUM mayor a USD 25.000
-    </div>
+  <!-- ========================================== -->
+  <!-- 3. EXPLICACIÓN NORMATIVA Y FINANCIERA      -->
+  <!-- ========================================== -->
+  <div class="card side">
+    <div class="seccion-titulo" style="margin-top:0;">Políticas de Riesgo</div>
+    <span class="badge-info">Aforo sobre AUM Neto</span><br><br>
 
-    <div id="warning" class="warning"></div>
+    <strong>• Si REINVIERTE (50% del Neto):</strong><br>
+    Permite tomar como máximo hasta el <strong>50% del AUM Neto</strong>. Si tienes $100.000 netos, podés tomar hasta $50.000 para comprar nuevos activos en la comitente.<br><br>
 
-    <label>AUM inicial (en pesos)</label>
-    <input type="number" id="aum" placeholder="Ej: 50000000">
+    <strong>• Si EGRESA / RETIRA (1/3 del Neto):</strong><br>
+    Al transferir los fondos fuera de la cuenta, el dinero egresado <strong>disminuye el respaldo líquido de la comitente</strong> y no genera nuevo colateral. Por esta razón, el cupo máximo se reduce estrictamente a <strong>un tercio (1/3) del AUM Neto</strong> (~$33.333 por cada $100.000).<br><br>
 
-    <label>Tipo de cambio</label>
-    <input type="number" id="tc" placeholder="Ej: 1000" oninput="actualizarDisclaimer()">
-
-    <button onclick="calcular()">Calcular</button>
-
-    <div id="error" class="error"></div>
-    <div id="resultado" class="result" style="display:none;"></div>
-
-    <div class="bottom-note">
-      Tener en cuenta la variabilidad del tipo de cambio y del valor de la cuenta, ya que no hay flexibilidad con los requisitos.
-    </div>
-  </div>
-
-  <div class="side">
-    <strong>Requisitos (SIN FLEX):</strong><br><br>
-    AUM > USD 25.000<br>
-    Solo 15 activos en Garantía<br>
-    Hasta el 50% del AUM inicial (o neto de caución)<br><br>
-    Mínimo de 3MM<br><br>
-
-    Equipo IFA MARCONI - NBP
+    <strong>Requisitos operativos:</strong>
+    <ul style="margin:6px 0; padding-left:18px;">
+      <li>AUM mínimo: <strong>USD 25.000</strong></li>
+      <li>Garantía: Hasta <strong>15 títulos</strong></li>
+      <li>Resta lineal de caución ya tomada</li>
+    </ul>
   </div>
 
 </div>
 
 <script>
-/* LÓGICA CALCULADORA TOMADORA */
-function calcularTomadora() {
-  const M       = parseFloat(document.getElementById("t_monto").value);
-  const TNA     = parseFloat(document.getElementById("t_tna").value);
-  const arancel = parseFloat(document.getElementById("t_arancel").value);
-  const ddm     = parseFloat(document.getElementById("t_ddm").value);
-  const plazo   = parseFloat(document.getElementById("t_plazo").value);
+let monedaCap = 'ARS';
+let monedaCosto = 'ARS';
 
-  const errorDiv  = document.getElementById("t_error");
+function cambiarMonedaCap(m) {
+  monedaCap = m;
+  document.getElementById("btn-moneda-cap-ars").className = "badge-btn " + (m === 'ARS' ? "active" : "");
+  document.getElementById("btn-moneda-cap-usd").className = "badge-btn " + (m === 'USD' ? "active" : "");
+
+  const tcContainer = document.getElementById("tc_container");
+  const aumInput = document.getElementById("aum_neto");
+
+  if (m === 'USD') {
+    tcContainer.style.display = "none";
+    aumInput.placeholder = "Ej: 100000";
+    if (aumInput.value == "100000000") aumInput.value = "100000";
+  } else {
+    tcContainer.style.display = "block";
+    aumInput.placeholder = "Ej: 100000000";
+    if (aumInput.value == "100000") aumInput.value = "100000000";
+  }
+  document.getElementById("cap_resultado").style.display = "none";
+}
+
+function cambiarMonedaCosto(m) {
+  monedaCosto = m;
+  document.getElementById("btn-moneda-costo-ars").className = "badge-btn " + (m === 'ARS' ? "active" : "");
+  document.getElementById("btn-moneda-costo-usd").className = "badge-btn " + (m === 'USD' ? "active" : "");
+
+  const tnaInput = document.getElementById("t_tna");
+  const montoInput = document.getElementById("t_monto");
+
+  if (m === 'USD') {
+    tnaInput.value = "4.5";
+    if (montoInput.value == "50000000") montoInput.value = "50000";
+  } else {
+    tnaInput.value = "38.5";
+    if (montoInput.value == "50000") montoInput.value = "50000000";
+  }
+  document.getElementById("t_resultado").style.display = "none";
+}
+
+function calcularCapacidad() {
+  const AUM_Neto = parseFloat(document.getElementById("aum_neto").value);
+  const tomadaActual = parseFloat(document.getElementById("caucion_tomada_actual").value) || 0;
+  const TC = monedaCap === 'ARS' ? parseFloat(document.getElementById("cap_tc").value) : 1;
+
+  const errorDiv = document.getElementById("cap_error");
+  const warnDiv = document.getElementById("cap_warning");
+  const resDiv = document.getElementById("cap_resultado");
+
+  errorDiv.innerHTML = "";
+  warnDiv.style.display = "none";
+  resDiv.style.display = "none";
+
+  if (isNaN(AUM_Neto) || AUM_Neto <= 0) {
+    errorDiv.innerHTML = "Por favor ingresá un AUM Neto válido.";
+    return;
+  }
+
+  if (monedaCap === 'ARS' && (isNaN(TC) || TC <= 0)) {
+    errorDiv.innerHTML = "Ingresá un tipo de cambio para validar el piso de USD 25.000.";
+    return;
+  }
+
+  const netoEnUSD = monedaCap === 'ARS' ? (AUM_Neto / TC) : AUM_Neto;
+  if (netoEnUSD < 25000) {
+    errorDiv.innerHTML = `El AUM Neto mínimo requerido es de USD 25.000 (actual: USD ${Math.round(netoEnUSD).toLocaleString("es-AR")}).`;
+    return;
+  }
+
+  if (netoEnUSD < 30000) {
+    warnDiv.innerHTML = "⚠️ Atención: La cuenta está muy cerca del umbral mínimo de USD 25.000.";
+    warnDiv.style.display = "block";
+  }
+
+  // 1. REINVERSIÓN: Hasta el 50% del AUM Neto
+  const cupoTotalReinversion = AUM_Neto * 0.50;
+  const adicionalReinversion = Math.max(0, cupoTotalReinversion - tomadaActual);
+
+  // 2. EGRESO (RETIRO): Hasta 1/3 del AUM Neto porque disminuye el colateral neto disponible
+  const cupoTotalEgreso = AUM_Neto / 3;
+  const adicionalEgreso = Math.max(0, cupoTotalEgreso - tomadaActual);
+
+  const pref = monedaCap === 'ARS' ? '$' : 'u$s';
+  const fmt = v => `${pref} ${Math.round(v).toLocaleString("es-AR")}`;
+
+  resDiv.innerHTML = `
+    <div class="seccion-titulo">Estado de Cuenta</div>
+    <table class="tabla-resultado">
+      <tr><td>AUM Neto del Cliente</td><td class="td-num">${fmt(AUM_Neto)}</td></tr>
+      <tr><td>Caución Ya Tomada</td><td class="td-num">${fmt(tomadaActual)}</td></tr>
+    </table>
+
+    <div class="seccion-titulo" style="margin-top:14px;">1. Si Reinvertís en Cartera (50% del Neto)</div>
+    <div class="info-callout">
+      El capital permanece en la comitente para compra de títulos. El tope total de caución es el 50% del AUM Neto.
+    </div>
+    <table class="tabla-resultado">
+      <tr><td>Tope Total Permitido (50%)</td><td class="td-num">${fmt(cupoTotalReinversion)}</td></tr>
+      <tr class="highlight-row">
+        <td>Podés Tomar Adicional:</td>
+        <td class="td-num">${fmt(adicionalReinversion)}</td>
+      </tr>
+    </table>
+
+    <div class="seccion-titulo" style="margin-top:14px;">2. Si Egresás los Fondos (1/3 del Neto)</div>
+    <div class="info-callout" style="border-left-color:#dc2626; color:#991b1b; background:#fef2f2;">
+      Al retirar el efectivo de la comitente, disminuye el respaldo líquido. Por regla de riesgo, el tope es 1/3 del Neto.
+    </div>
+    <table class="tabla-resultado">
+      <tr><td>Tope Total para Retiro (1/3)</td><td class="td-num">${fmt(cupoTotalEgreso)}</td></tr>
+      <tr class="highlight-row">
+        <td>Podés Retirar Adicional:</td>
+        <td class="td-num">${fmt(adicionalEgreso)}</td>
+      </tr>
+    </table>
+  `;
+
+  resDiv.style.display = "block";
+}
+
+function calcularCostoTomadora() {
+  const M = parseFloat(document.getElementById("t_monto").value);
+  const TNA = parseFloat(document.getElementById("t_tna").value);
+  const arancel = parseFloat(document.getElementById("t_arancel").value);
+  const ddm = parseFloat(document.getElementById("t_ddm").value);
+  const plazo = parseFloat(document.getElementById("t_plazo").value);
+
+  const errorDiv = document.getElementById("t_error");
   const resultDiv = document.getElementById("t_resultado");
 
   errorDiv.innerHTML = "";
   resultDiv.style.display = "none";
 
   if ([M, TNA, arancel, ddm, plazo].some(v => isNaN(v) || v <= 0)) {
-    errorDiv.innerHTML = "Ingresá valores válidos en todos los campos";
+    errorDiv.innerHTML = "Completá todos los parámetros correctamente.";
     return;
   }
 
-  const tna_d     = TNA     / 100;
+  const tna_d = TNA / 100;
   const arancel_d = arancel / 100;
-  const ddm_d     = ddm     / 100;
+  const ddm_d = ddm / 100;
 
-  const tasaEfectiva = tna_d / 365 * plazo;
-  const arancelEfec  = (plazo / 90) * arancel_d;
-  const ddmEfec      = (plazo / 90) * ddm_d;
-  const ivaArancel   = arancelEfec * 0.21;
-  const ivaDdm       = ddmEfec * 0.21;
+  const tasaEfectiva = (tna_d / 365) * plazo;
+  const arancelEfec = (plazo / 90) * arancel_d;
+  const ddmEfec = (plazo / 90) * ddm_d;
 
-  const intereses       = tasaEfectiva * M;
-  const arancelPesos    = arancelEfec  * M;
-  const ddmPesos        = ddmEfec      * M;
-  const ivaArancelPesos = ivaArancel   * M;
-  const ivaDdmPesos     = ivaDdm       * M;
+  const ivaArancel = arancelEfec * 0.21;
+  const ivaDdm = ddmEfec * 0.21;
 
-  const montoBruto = M * (1 + tasaEfectiva);
-  const montoNeto  = M + intereses + arancelPesos + ddmPesos + ivaArancelPesos + ivaDdmPesos;
+  const intereses = tasaEfectiva * M;
+  const arancelMonto = arancelEfec * M;
+  const ddmMonto = ddmEfec * M;
+  const ivaArancelMonto = ivaArancel * M;
+  const ivaDdmMonto = ivaDdm * M;
+
+  const gastosTotales = intereses + arancelMonto + ddmMonto + ivaArancelMonto + ivaDdmMonto;
+  const montoNeto = M + gastosTotales;
 
   const TEA = Math.pow(1 + tasaEfectiva, 365 / plazo) - 1;
   const CFT = Math.pow(montoNeto / M, 365 / plazo) - 1;
 
-  const fmt  = v => `$ ${Math.round(v).toLocaleString("es-AR")}`;
-  const pct  = v => `${(v * 100).toFixed(2)}%`;
+  const pref = monedaCosto === 'ARS' ? '$' : 'u$s';
+  const fmt = v => `${pref} ${v.toLocaleString("es-AR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  const pct = v => `${(v * 100).toFixed(2)}%`;
   const pct4 = v => `${(v * 100).toFixed(4)}%`;
 
   resultDiv.innerHTML = `
-    <div class="seccion-titulo">📊 Tasas</div>
+    <div class="seccion-titulo">Liquidación al Vencimiento (${plazo} días)</div>
     <table class="tabla-resultado">
-      <tr><th>Concepto</th><th class="td-num">% Efec.</th><th class="td-num">Pesos</th></tr>
-      <tr><td>Tasa Efectiva</td><td class="td-num">${pct4(tasaEfectiva)}</td><td class="td-num">${fmt(intereses)}</td></tr>
-      <tr><td>Arancel Efec.</td><td class="td-num">${pct4(arancelEfec)}</td><td class="td-num">${fmt(arancelPesos)}</td></tr>
-      <tr><td>DDM</td><td class="td-num">${pct4(ddmEfec)}</td><td class="td-num">${fmt(ddmPesos)}</td></tr>
-      <tr><td>IVA s/Arancel</td><td class="td-num">${pct4(ivaArancel)}</td><td class="td-num">${fmt(ivaArancelPesos)}</td></tr>
-      <tr><td>IVA s/DDM</td><td class="td-num">${pct4(ivaDdm)}</td><td class="td-num">${fmt(ivaDdmPesos)}</td></tr>
+      <tr><th>Concepto</th><th class="td-num">Tasa</th><th class="td-num">Importe</th></tr>
+      <tr><td>Intereses (TNA ${TNA}%)</td><td class="td-num">${pct4(tasaEfectiva)}</td><td class="td-num">${fmt(intereses)}</td></tr>
+      <tr><td>Arancel TN 90d</td><td class="td-num">${pct4(arancelEfec)}</td><td class="td-num">${fmt(arancelMonto)}</td></tr>
+      <tr><td>Derechos Mercado</td><td class="td-num">${pct4(ddmEfec)}</td><td class="td-num">${fmt(ddmMonto)}</td></tr>
+      <tr><td>IVA (Arancel + DDM)</td><td class="td-num">${pct4(ivaArancel + ivaDdm)}</td><td class="td-num">${fmt(ivaArancelMonto + ivaDdmMonto)}</td></tr>
+      <tr class="highlight-row"><td>Costo Total del Préstamo</td><td class="td-num">-</td><td class="td-num">${fmt(gastosTotales)}</td></tr>
     </table>
 
-    <div class="seccion-titulo" style="margin-top:12px">📈 TEA / CFT</div>
+    <div class="seccion-titulo" style="margin-top:14px;">Cancelación Total</div>
     <table class="tabla-resultado">
-      <tr><th>Concepto</th><th class="td-num">Valor</th></tr>
-      <tr><td>TEA</td><td class="td-num">${pct(TEA)}</td></tr>
-      <tr><td>CFT</td><td class="td-num">${pct(CFT)}</td></tr>
+      <tr><td>Capital Tomado</td><td class="td-num">${fmt(M)}</td></tr>
+      <tr class="highlight-row"><td>Total a Devolver</td><td class="td-num">${fmt(montoNeto)}</td></tr>
     </table>
 
-    <div class="seccion-titulo" style="margin-top:12px">💰 Monto Futuro</div>
+    <div class="seccion-titulo" style="margin-top:14px;">Tasas Anualizadas</div>
     <table class="tabla-resultado">
-      <tr><th></th><th class="td-num">Bruto</th><th class="td-num">Neto</th></tr>
-      <tr class="highlight-row">
-        <td>Total</td>
-        <td class="td-num">${fmt(montoBruto)}</td>
-        <td class="td-num">${fmt(montoNeto)}</td>
-      </tr>
+      <tr><td>TEA (Tasa Efectiva Anual)</td><td class="td-num">${pct(TEA)}</td></tr>
+      <tr class="highlight-row"><td>CFT (Costo Financiero Total)</td><td class="td-num">${pct(CFT)}</td></tr>
     </table>
-
-    <div class="seccion-titulo" style="margin-top:12px">📋 AUM Necesario</div>
-    <table class="tabla-resultado">
-      <tr class="highlight-row">
-        <td>AUM Mínimo (LTV 50%)</td>
-        <td class="td-num">${fmt(M / 0.5)}</td>
-      </tr>
-    </table>
-  `;
-
-  resultDiv.style.display = "block";
-}
-
-/* LÓGICA CALCULADORA COLOCADORA */
-function actualizarDisclaimer() {
-  const TC = parseInt(document.getElementById("tc").value);
-  let texto = "podemos poner únicamente 5 títulos en garantía y el cliente debe tener un AUM mayor a USD 25.000";
-  if (!isNaN(TC) && TC > 0) {
-    const minimoPesos = 25000 * TC;
-    texto += ` (~ $${minimoPesos.toLocaleString()})`;
-  }
-  document.getElementById("disclaimer").innerHTML = texto;
-}
-
-function calcular() {
-  const A  = parseInt(document.getElementById("aum").value);
-  const TC = parseInt(document.getElementById("tc").value);
-
-  const errorDiv  = document.getElementById("error");
-  const resultDiv = document.getElementById("resultado");
-  const warningDiv = document.getElementById("warning");
-
-  errorDiv.innerHTML  = "";
-  resultDiv.style.display = "none";
-  warningDiv.innerHTML = "";
-
-  if (isNaN(A) || A <= 0 || isNaN(TC) || TC <= 0) {
-    errorDiv.innerHTML = "Ingresá valores válidos";
-    return;
-  }
-
-  const minimoPesos = 25000 * TC;
-  const umbralPesos = 30000 * TC;
-
-  if (A < minimoPesos) {
-    errorDiv.innerHTML = `El AUM debe ser mayor a USD 25.000 (~ $${minimoPesos.toLocaleString()})`;
-    return;
-  }
-
-  if (A >= minimoPesos && A <= umbralPesos) {
-    warningDiv.innerHTML = "⚠️ El AUM está muy cerca del mínimo requerido para tomar caución";
-  }
-
-  const caucionMantiene = Math.floor(0.5 * A);
-  const caucionRetira   = Math.floor(A / 3);
-
-  resultDiv.innerHTML = `
-    <strong>Resultados:</strong><br><br>
-    🔵 <strong>Manteniendo la caución en cuenta</strong><br>
-    Monto máximo: $ ${caucionMantiene.toLocaleString()}<br>
-    % sobre AUM: ${Math.floor(caucionMantiene / A * 100)}%<br><br>
-    🔵 <strong>Retirando la caución</strong><br>
-    Monto máximo: $ ${caucionRetira.toLocaleString()}<br>
-    % sobre AUM: ${Math.floor(caucionRetira / A * 100)}%
   `;
 
   resultDiv.style.display = "block";
